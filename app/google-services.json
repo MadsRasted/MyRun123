@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "467796596060",
+    "firebase_url": "https://myrun-287b2-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "myrun-287b2",
+    "storage_bucket": "myrun-287b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467796596060:android:0fafee3fb8d9a63c951d99",
+        "android_client_info": {
+          "package_name": "com.example.myrun"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467796596060-pf5tob1bqo7r12ukmro9553trs1f3243.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGGR_rKrk0E2n8CWORpgSSWjWJ_H_b4QA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467796596060-pf5tob1bqo7r12ukmro9553trs1f3243.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

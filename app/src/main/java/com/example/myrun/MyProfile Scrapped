@@ -1,0 +1,81 @@
+package com.example.myrun;
+
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MyProfile extends AppCompatActivity implements Updatable {
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference().child("profile");
+
+    private ImageView imageView;
+    private Bitmap currentBitmap;
+//    private Profile currentProfile;
+    private EditText name;
+    private EditText email;
+    private EditText age;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_myprofile);
+//        name = findViewById(R.id.profileName);
+//        email = findViewById(R.id.profileEmail);
+//        age = findViewById(R.id.profileAge);
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                String nameTxt = snapshot.child("name").getValue(String.class);
+                String emailTxt = snapshot.child("email").getValue(String.class);
+                String ageTxt = snapshot.child("age").getValue(String.class);
+
+                name.setText(nameTxt);
+                email.setText(emailTxt);
+                age.setText(ageTxt);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                System.out.println("The read failed : " + error.getCode());
+            }
+        });
+    }
+
+    public void UpdateProfilePressed(View view){
+        String nameTxt = name.getText().toString();
+        String emailTxt = email.getText().toString();
+        String ageTxt = age.getText().toString();
+
+        Map<String, String> profileMap = new HashMap<>();
+
+        profileMap.put("name", nameTxt);
+        profileMap.put("email", emailTxt);
+        profileMap.put("age", ageTxt);
+
+        myRef.setValue(profileMap);
+
+        System.out.println("done save");
+    }
+
+
+    @Override
+    public void update(Object o) {
+
+    }
+}
